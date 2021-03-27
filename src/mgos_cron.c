@@ -430,6 +430,7 @@ bool s_cron_schedule_next(struct mgos_cron_entry *ce) {
     left_until_next = ((double) ce->planned_time - mg_time()) * 1000.0;
     if (left_until_next < 0.0) {
       ce->planned_time = mg_time();
+      return false;
     }
   } while (left_until_next < 0.0);
 
